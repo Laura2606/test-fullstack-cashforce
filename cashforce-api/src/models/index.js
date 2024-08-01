@@ -40,4 +40,7 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.Buyer = require('./buyer')(sequelize, Sequelize.DataTypes);
+// db.Cnpj = require('./cnpj')(sequelize, Sequelize.DataTypes)
+
 module.exports = db;
