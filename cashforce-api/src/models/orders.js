@@ -86,9 +86,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Order.associate = function (models) {
-        Order.belongsTo(models.cnpjs, { foreignKey: 'cnpjId' });
+        Order.belongsTo(models.Cnpj, { foreignKey: 'cnpjId' });
         Order.belongsTo(models.users, { foreignKey: 'userId' });
-        Order.belongsTo(models.buyers, { foreignKey: 'buyerId' });
+        Order.belongsTo(models.Buyer, { foreignKey: 'buyerId' });
         Order.belongsTo(models.providers, { foreignKey: 'providerId' });
     };
 
