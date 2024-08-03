@@ -1,9 +1,16 @@
-const { Order } = require('../models');
+const { Order, User, Buyer, Provider, Cnpj } = require('../models');
 
 const ordersController = {
     getAllOrders: async (req, res) => {
         try {
-            const orders = await Order.findAll();
+            const orders = await Order.findAll({
+                include: [
+                    { model: User, attributes: ['id', 'name'] },
+                    { model: Buyer, attributes: ['id', 'name'] },
+                    { model: Provider, attributes: ['id', 'name'] },
+                    { model: Cnpj, attributes: ['id', 'name'] }
+                ]
+            });
             res.status(200).json(orders);
         } catch (error) {
             res.status(500).json({ error: 'Failed to retrieve orders' });

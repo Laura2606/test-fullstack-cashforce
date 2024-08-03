@@ -2,6 +2,7 @@
   <div class="home-view">
     
     <SidebarMenu />
+    <OrderList />
     
   </div>
 </template>
@@ -9,12 +10,14 @@
 <script>
 
 import SidebarMenu from '@/components/SidebarMenu.vue';
+import OrderList from '@/components/OrderList.vue';
 
 export default {
   name: 'HomeView',
   components: {
    
-    SidebarMenu
+    SidebarMenu,
+    OrderList
   },
 };
 </script>

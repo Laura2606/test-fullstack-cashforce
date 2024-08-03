@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = (sequelize, DataTypes) => {
-    const Order = sequelize.define('orders', {
+    const Order = sequelize.define('Order', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         orderPath: DataTypes.STRING,
         orderFileName: DataTypes.STRING,
         orderOriginalName: DataTypes.STRING,
-        emissionDate: DataTypes.STRING,
+        emissionDate: DataTypes.DATE,
         pdfFile: DataTypes.STRING,
         emitedTo: {
             type: DataTypes.STRING,
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         nNf: DataTypes.STRING,
         CTE: DataTypes.STRING,
-        value: DataTypes.STRING,
+        value: DataTypes.FLOAT,
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -87,9 +87,9 @@ module.exports = (sequelize, DataTypes) => {
 
     Order.associate = function (models) {
         Order.belongsTo(models.Cnpj, { foreignKey: 'cnpjId' });
-        Order.belongsTo(models.users, { foreignKey: 'userId' });
+        Order.belongsTo(models.User, { foreignKey: 'userId' });
         Order.belongsTo(models.Buyer, { foreignKey: 'buyerId' });
-        Order.belongsTo(models.providers, { foreignKey: 'providerId' });
+        Order.belongsTo(models.Provider, { foreignKey: 'providerId' });
     };
 
     return Order;

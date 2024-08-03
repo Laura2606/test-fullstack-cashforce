@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = (sequelize, DataTypes) => {
-    const Sponsor = sequelize.define('sponsors', {
+    const Sponsor = sequelize.define('Sponsor', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
         cnpjId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'cnpjs',
+                model: 'Cnpj',
                 key: 'id',
             },
             onDelete: 'SET NULL',

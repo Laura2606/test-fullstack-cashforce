@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('users', {
+    const User = sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.associate = function (models) {
-        User.hasMany(models.orders, { foreignKey: 'userId' });
+        User.hasMany(models.Order, { foreignKey: 'userId' });
     };
 
     return User;

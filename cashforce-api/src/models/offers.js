@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-    const Offer = sequelize.define('Offers', {
+    const Offer = sequelize.define('Offer', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
         sponsorId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'sponsors',
+                model: 'Sponsor',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -68,8 +68,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Offer.associate = function (models) {
-        Offer.belongsTo(models.orders, { foreignKey: 'orderId' });
-        Offer.belongsTo(models.sponsors, { foreignKey: 'sponsorId' });
+        Offer.belongsTo(models.Order, { foreignKey: 'orderId' });
+        Offer.belongsTo(models.Sponsor, { foreignKey: 'sponsorId' });
     };
 
     return Offer;

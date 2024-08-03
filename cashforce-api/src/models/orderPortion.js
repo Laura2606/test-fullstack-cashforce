@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = (sequelize, DataTypes) => {
-    const OrderPortion = sequelize.define('orderportions', {
+    const OrderPortion = sequelize.define('OrderPortion', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         orderId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'orders',
+                model: 'Order',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     OrderPortion.associate = function (models) {
-        OrderPortion.belongsTo(models.orders, { foreignKey: 'orderId' });
+        OrderPortion.belongsTo(models.Order, { foreignKey: 'orderId' });
     };
 
     return OrderPortion;
