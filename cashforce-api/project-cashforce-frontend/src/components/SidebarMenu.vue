@@ -3,7 +3,7 @@
     <div class="logo-container">
       <img src="@/assets/cashforce-logo.png" alt="Logo" class="logo" />
     </div>
-     <router-link to="/notas-fiscais" class="menu-item">Notas Fiscais</router-link>
+     <router-link to="/notas-fiscais" class="sidebar-item">Notas Fiscais</router-link>
     <!-- Adicione mais elementos de menu aqui -->
   </div>
 </template>
@@ -39,12 +39,16 @@ export default {
   max-height: 100%;
 }
 
-.menu-item {
+.sidebar-item {
   display: block;
   padding: 16px;
   text-decoration: none;
   color: rgb(35, 214, 156); /* Verde água */
   font-size: 18px;
   text-align: center;
+}
+
+.sidebar-item:hover {
+  background-color: #e0f7f5;
 }
 </style>
