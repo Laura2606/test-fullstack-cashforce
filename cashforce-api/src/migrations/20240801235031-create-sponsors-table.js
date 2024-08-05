@@ -91,7 +91,7 @@ module.exports = {
       cnpjId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'cnpjs',
+          model: 'Cnpj',
           key: 'id',
         },
         onDelete: 'SET NULL',
@@ -104,6 +104,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
+    await queryInterface.removeConstraint('offers', 'offers_ibfk_2');
     await queryInterface.dropTable('sponsors');
   }
 };

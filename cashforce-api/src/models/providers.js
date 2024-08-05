@@ -56,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Provider.associate = function (models) {
         Provider.belongsTo(models.Cnpj, { foreignKey: 'cnpjId' });
+        Provider.hasMany(models.Order, { foreignKey: 'providerId', as: 'orders' });
     };
 
     return Provider;

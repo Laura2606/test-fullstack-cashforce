@@ -1,4 +1,6 @@
 
+'use strict'
+/** @type { import('sequelize-cli').Migration } */
 module.exports = (sequelize, DataTypes) => {
     const Buyer = sequelize.define('Buyer', {
         id: {
@@ -39,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         cnpjId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'Cnpj', // Nome do modelo referenciado
+                model: 'Cnpj',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -54,6 +56,8 @@ module.exports = (sequelize, DataTypes) => {
     Buyer.associate = function (models) {
         // Associações
         Buyer.belongsTo(models.Cnpj, { foreignKey: 'cnpjId' });
+        Buyer.hasMany(models.Order, { foreignKey: 'buyerId', as: 'orders' });
+
     };
 
     return Buyer;

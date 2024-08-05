@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
         account: DataTypes.STRING,
         phoneNumber: DataTypes.STRING,
         situation: DataTypes.STRING,
-        situationDate: DataTypes.STRING,
+        situationDate: DataTypes.DATE,
+        email: DataTypes.STRING,
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -41,20 +42,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        cnpjId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Cnpj',
-                key: 'id',
-            },
-            onDelete: 'SET NULL',
-            onUpdate: 'CASCADE',
-        },
-        email: DataTypes.STRING,
+    }, {
+        tableName: 'sponsors',
     });
 
     Sponsor.associate = function (models) {
-        Sponsor.belongsTo(models.Cnpj, { foreignKey: 'cnpjId' });
+        Sponsor.hasMany(models.Offer, { foreignKey: 'sponsorId', as: 'offers' });
     };
 
     return Sponsor;

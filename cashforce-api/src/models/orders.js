@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         cnpjId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'cnpjs',
+                model: 'Cnpj',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
         userId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'users',
+                model: 'User',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
         buyerId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'buyers',
+                model: 'Buyer',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
         providerId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'providers',
+                model: 'Provider',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -88,8 +88,9 @@ module.exports = (sequelize, DataTypes) => {
     Order.associate = function (models) {
         Order.belongsTo(models.Cnpj, { foreignKey: 'cnpjId' });
         Order.belongsTo(models.User, { foreignKey: 'userId' });
-        Order.belongsTo(models.Buyer, { foreignKey: 'buyerId' });
-        Order.belongsTo(models.Provider, { foreignKey: 'providerId' });
+        Order.belongsTo(models.Buyer, { foreignKey: 'buyerId', as: 'buyer' });
+        Order.belongsTo(models.Provider, { foreignKey: 'providerId', as: 'provider' });
+        Order.hasMany(models.Offer, { foreignKey: 'orderId', as: 'offers' });
     };
 
     return Order;

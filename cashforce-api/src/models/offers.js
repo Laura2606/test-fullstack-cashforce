@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
         orderId: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'orders',
+                model: 'Order',
                 key: 'id',
             },
             onDelete: 'SET NULL',
@@ -68,8 +68,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Offer.associate = function (models) {
-        Offer.belongsTo(models.Order, { foreignKey: 'orderId' });
-        Offer.belongsTo(models.Sponsor, { foreignKey: 'sponsorId' });
+        Offer.belongsTo(models.Order, { foreignKey: 'orderId', as: 'order' });
+        Offer.belongsTo(models.Sponsor, { foreignKey: 'sponsorId', as: 'sponsor' });
     };
 
     return Offer;
